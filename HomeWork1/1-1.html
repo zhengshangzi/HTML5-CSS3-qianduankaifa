@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单</title>
+    <style>
+        .box{
+            width:500px;
+        }
+		.a{
+            color:red;
+            font-weight:bolder;
+        }
+        span{
+            color:red;
+        }
+	</style>
+</head>
+<body>
+    <div class="box">
+        <header>
+            <h1>毕业生信息</h1>
+        </header>
+        <article>
+            <section>
+                <fieldset>
+                    <legend class="a">学生信息</legend>
+                    <form action="#" method="GET" id="testform">
+                        姓&nbsp;&nbsp;名
+                        <input type="text" name="name" placeholder="请输入姓名" autofocus="autofocus" required="required"/>
+                        <span>*</span>
+                        <br/>
+                        学&nbsp;&nbsp;号
+                        <input type="number" name="num" placeholder="请输入学号" required="required"/>
+                        <span>*</span>
+                        <br/>
+                        手&nbsp;&nbsp;机
+                        <input type="tel" name="phone" placeholder="请输入手机号" required="required"/>
+                        <span>*</span>
+                        <br/>
+                        邮&nbsp;&nbsp;箱
+                        <input type="email" name="email" placeholder="请输入邮箱地址" required="required"/>
+                        <span>*</span>
+                        <br/>
+                </fieldset>   
+            </section>
+            <br/>
+            <section>
+                <fieldset>
+                    <legend class="a">录取情况</legend>
+                        录取学校
+                        <input type="search" name="school" />
+                        <br/>
+                        入学成绩
+                        <input type="number" name="grade" />
+                        <br/>
+                        入学时间
+                        <input type="date" name="datademo"  />
+                        <br/>
+                </fieldset>
+            </section>
+            <section>
+                    <br/>
+                    <input type="submit"/>
+                </form>
+            </section>
+       
+        </article>
+    </div>
+</body>
+</html>
