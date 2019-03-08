@@ -33,7 +33,7 @@
                         <span>*</span>
                         <br/>
                         学&nbsp;&nbsp;号
-                        <input type="number" name="num" placeholder="请输入学号" required="required"/>
+                        <input type="number" name="num" min="0" placeholder="请输入学号" required="required"/>
                         <span>*</span>
                         <br/>
                         手&nbsp;&nbsp;机
@@ -51,10 +51,20 @@
                 <fieldset>
                     <legend class="a">录取情况</legend>
                         录取学校
-                        <input type="search" name="school" />
+                        <input type="search" list="school" name = "school" autofocus="autofocus"/>
+                        <datalist id="school">
+                            <option >河北师范大学</option>
+                            <option >河北经贸大学</option>
+                            <option >河北科技大学</option>
+                            <option >河北地质大学</option>
+                            <option >河北农业大学</option>
+                            <option >河北工业大学</option>
+                            <option >北京大学</option>
+                            <option >清华大学</option>
+                        </datalist>            
                         <br/>
                         入学成绩
-                        <input type="number" name="grade" />
+                        <input type="number" min="0" name="grade" />
                         <br/>
                         入学时间
                         <input type="date" name="datademo"  />
