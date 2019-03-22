@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>历史搜索记录</title>
+    <style>
+        .box{
+            width:400px; 
+            border:2px solid #e0e0e1;
+            height:180px;
+        }
+        .input-1g {
+            height: 45px;
+            width:195px;
+            border-radius:2px;
+            font-family: 微软雅黑;
+            font-size: 13px;
+            color:#000000;
+            border: 2px solid #e6b063;
+  
+        }  
+        .input-2g {
+            height: 36px;
+            width:140px;
+            border-radius: 2px;
+            font-family: 微软雅黑;
+            font-size: 14px;
+            color:grey;
+            border: 2px solid #c0c0c0;
+            background-color: #e4e4e4;
+            text-align: center;
+        }  
+        .boxSearch{
+            width:100px;
+            height:20px;
+            margin-top: 5px;
+            color:black;
+            float: left;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .box1{
+            margin-left: 5px;
+            margin-top: 5px;
+            height:45px;
+            width:395px;
+            float: left;
+        }
+        .box2{
+            margin-top: 3px;
+            margin-left: 5px;
+            width:395px;
+            float: left;
+        }
+        .box3{
+            margin-left: 5px;
+            height:80px;
+            width:395px;
+        }
+        #txtBox {
+            height:20px;
+            margin-right: 10px;
+            background-color: #e4e4e4;
+            color:black;
+            font-size: 16px;
+            margin-bottom: 10px;
+            float:left;
+            z-index: 20px;
+            text-align: center;
+        }
+        .delete{
+           float:right;
+           margin-top: 5px;
+           z-index: 111px;
+        }
+        .box4{
+            width:200px;
+            height:50px;
+            color:black;
+            font-size: 20px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">
+            <form>
+                <input class="form-control input-1g"  type="search" name="text" id="text" placeholder="请输入想查找的商品"/>
+                <input class="form-control input-2g" type="button" value="搜索" id="searchButton" onclick="add" />
+            </form>
+        </div>
+        <div class="box3">
+            <div class="boxSearch">
+                    最近搜索
+            </div>
+            <div class="delete" id="delete">
+                <img src="./1.png" id="deleteButton">
+            </div>
+        </div>
+        <div class="box2" id="box2">
+        </div>
+        <div class="box4" id="box4">无历史搜索记录
+        </div>     
+    </div>
+    <script>
+            var text = document.getElementById('text');
+            var box2=document.getElementById('box2');
+            var searchButton = document.getElementById('searchButton');
+            var deleteButton = document.getElementById('deleteButton');
+            var box4=document.getElementById('box4');
+            var iTime=[];
+            var itxt=[];
+            var firstTime;
+            var str0="";
+            //搜索框初始化函数
+            function init(){
+                text.value=str0;
+            }
+
+            //最近搜索展示函数
+            function show(){  
+                box2.innerHTML="";
+                box4.style.display='block';
+                for(var i = 0; i < itxt.length; i++){
+                    var txtBox = document.createElement('txtBox');
+                    txtBox.setAttribute("id","txtBox");
+                    box2.appendChild(txtBox);
+                    txtBox.innerHTML=itxt[i];   
+                    if(itxt[i]!=''){
+                        box4.style.display='none';
+                    }
+                }       
+            }
+
+            //创建节点函数
+            function initInit(){
+                iTime=[];
+                itxt=[];
+                for(var i = 0;i<localStorage.length;i++){
+                    if(!isNaN(localStorage.key(i))){
+                        iTime.push(localStorage.key(i));
+                     }
+                }  
+                if(iTime.length > 0) {
+                    iTime.sort();
+                    for (var i = 0; i < iTime.length; i++) {
+                        localStorage.getItem(iTime[i]).trim() && itxt.push(localStorage.getItem(iTime[i]));
+                    }
+                }
+                show();
+            }
+            initInit();
+
+            //搜索按钮点击函数
+            searchButton.onclick=function() {
+                var time;
+                time=new Date().getTime();
+                var value=text.value;
+                var index;
+                if(!value){
+                    alert("你未输入搜索内容");
+                    return false;
+                }
+                for(var i=0;i<itxt.length;i++){
+                    if(itxt[i]== value){
+                        index = i; 
+                        break;
+                    }
+                    else{
+                        index = -1;
+                    }
+                }	
+                if(index>= 0){
+                    for(var j = 0; j < localStorage.length; j++){
+                        if(value == localStorage.getItem(localStorage.key(j))){
+                            localStorage.removeItem(localStorage.key(j));
+                        }
+                    }
+                    localStorage.setItem(time,value); 
+                }
+                else{ 
+                    localStorage.setItem(time,value);
+                }
+                initInit();
+                init();
+            }
+
+            //删除叉号点击函数
+            deleteButton.onclick=function(){
+                localStorage.clear();
+                initInit();
+            }
+    </script>
+</body>
+</html>
+
