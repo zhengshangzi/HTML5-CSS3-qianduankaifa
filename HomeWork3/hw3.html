@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮奖效果</title>
+    <style>
+    body{
+        margin: 0;
+    }
+    #price{
+        width: 200px; 
+        height: 100px; 
+        font-size: 40px; 
+        color: #f60; 
+        line-height: 100px; 
+        text-align: center;
+    }
+ 	#canvas{
+        position: absolute;
+        top: 0; 
+        left: 0;
+    } 
+    </style>
+</head>
+<body>
+    <div id="price">
+        一等奖
+    </div>
+    <canvas id="canvas" width="200" height="100">
+        你的浏览器不支持canvas
+    </canvas>
+<script>
+    var canvas = document.getElementById("canvas");
+	context = canvas.getContext("2d");
+
+    var width = canvas.width;
+    var height = canvas.height;
+    //设置遮罩层--用矩形填充
+    context.fillStyle = "#ccc";
+	context.fillRect(0, 0, width, height);
+
+    // 默认点击时透明圆的半径
+    var touchRadius = 14;
+
+    //画圆时透明遮罩层
+    var fillCircle = function (x, y, radius, fillColor) {
+	    this.fillStyle = "#eee"
+        this.save();
+	    this.beginPath();
+	    this.moveTo(x, y);
+	    this.arc(x, y, radius, 0, Math.PI * 2);   
+	    this.fill();
+        this.closePath();
+		this.restore();
+	};
+
+    //清空遮罩层
+    var clearRect=function () {
+		context.clearRect(0, 0, width, height);
+	}
+
+    //计算已经刮过的区域占整个区域的百分比
+    var getTransparentPercent = function (context, width, height) {
+	    var imageData = context.getImageData(0, 0, width, height),    
+	    pixles = imageData.data,
+	    transPixs = [];
+	    for (var i = 0, j = pixles.length; i < j; i += 4) {  
+	        var a = pixles[i + 3];  
+	        if (a === 0) {    
+	            transPixs.push(i);
+	        }
+	    }
+	    return (transPixs.length / (pixles.length / 4) * 100).toFixed(2);
+	}
+
+    //设置定值，去除遮罩层
+    var fillefPercentMax= function(percentage){
+        console.log("当前涂抹比例为：" + getTransparentPercent(context, width, height));
+        if(getTransparentPercent(context, width, height)> 85) {
+            // 当像素点的个数超过85时，清除遮罩层
+            context.clearRect(0, 0, width, height);
+            console.log("刮奖完成");
+        } 
+    }
+
+    //绑定事件
+    var mouseDown = false;
+    var mouseIn = false;
+    canvas.addEventListener('mousedown', function(e){
+      e.preventDefault();
+      mouseDown = true;
+    })
+    canvas.addEventListener('mouseup', function(e){
+      e.preventDefault();
+      mouseDown = false;
+    })
+    canvas.addEventListener('mouseover', function(e){
+      e.preventDefault();
+      mouseIn = true;
+    })
+    canvas.addEventListener('mouseout', function(e){
+      e.preventDefault();
+      mouseIn = false;
+    }) 
+
+    //开始刮奖---移动
+    var offsetLeft = canvas.offsetLeft;
+    var offsetTop = canvas.offsetTop;  
+    canvas.addEventListener('mousemove', function(e){
+        e.preventDefault();
+        if(!mouseDown || !mouseIn){
+            return;
+        }
+        var x = e.clientX ;
+        var y = e.clientY ;
+        // 关键部分--当在canvas上再次绘画时候设置透明
+	    context.globalCompositeOperation = 'destination-out';    
+	    fillCircle.call(context, x, y, touchRadius);
+        fillefPercentMax();
+    })
+</script>
+</body>
+</html>
