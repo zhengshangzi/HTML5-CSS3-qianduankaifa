@@ -30,7 +30,7 @@
     </canvas>
 <script>
     var canvas = document.getElementById("canvas");
-	context = canvas.getContext("2d");
+	var context = canvas.getContext("2d");
     
     var width = canvas.width;
     var height = canvas.height;
@@ -48,7 +48,7 @@
 
     //画圆时透明遮罩层
     var fillCircle = function (x, y, radius, fillColor) {
-	    this.fillStyle = "#eee"
+	    this.fillStyle = "#eee";
         this.save();
 	    this.beginPath();
 	    this.moveTo(x, y);
@@ -65,9 +65,9 @@
 
     //计算已经刮过的区域占整个区域的百分比
     var getTransparentPercent = function (context, width, height) {
-	    var imageData = context.getImageData(0, 0, width, height),    
-	    pixles = imageData.data,
-	    transPixs = [];
+	    var imageData = context.getImageData(0, 0, width, height);   
+	    var pixles = imageData.data;
+	    var transPixs = [];
 	    for (var i = 0, j = pixles.length; i < j; i += 4) {  
 	        var a = pixles[i + 3];  
 	        if (a === 0) {    
