@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3变形与动画</title>
+	<style type="text/css">
+
+	/*整体大框*/
+	.container{
+		margin: 0 auto;
+	}
+	
+	/*文章部分--card卡片*/
+	.card {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%) translateZ(0);
+		width: 370px;
+		height:440px;
+		border:5px solid#d3d3d3;
+		background-color: #fff;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+		transition: box-shadow 0.4s;
+	}
+
+	/*card卡片--滑动效果--添加阴影*/
+	.card:hover {
+		box-shadow: 0 0 35px rgba(0, 0, 0, 0.3);
+	}
+
+	/*card卡片--日期部分*/
+	.card__date {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		width: 45px;
+		height: 37px;
+		padding-top: 8px;
+		background-color: rgba(255,127,80);
+		border-radius: 50%;
+		color: #fff;
+		text-align: center;
+		font-weight: bold;
+		line-height: 13px;
+	}
+
+	/*card卡片--日期部分--日*/
+	.card__date__day {
+		font-size: 12px;
+	}
+
+	/*card卡片--日期部分--月*/
+	.card__date__month {
+		font-size: 12px;
+	}
+
+	/*card卡片--图片部分*/
+	.card__picture {
+		height: 245px;
+		overflow: hidden;
+		background-color: #000;
+		transition: height 0.5s;
+	}
+
+	/*card卡片--图片部分--照片*/
+	.card__picture img {
+		width:370px;
+		height:245px;
+		display: block;
+		opacity: 1;
+		transform: scale(1,1);
+		transition: opacity 0.4s, transform 0.4s;
+	}
+	/*card卡片--图片部分--滑动照片*/
+	.card:hover .card__picture {
+		height: 130px;
+	}
+
+	.card:hover .card__picture img {
+		opacity: 0.6;
+		transform: scale(1.2,1.2);
+	}
+
+	/*card卡片--正文*/
+	.card__article {
+		position: relative;
+		height: 150px;
+		padding: 20px;
+		transition: height 0.4s;
+	}
+	.card:hover .card__article {
+		height: 300px;
+	}
+
+	/*card卡片--"照片"文字*/
+	.card__kind{
+		position: absolute;
+		top: -25px;
+		left: 0;
+		height: 25px;
+		padding: 0 15px;
+		background-color: coral;
+		color: #fff;
+		font-size: 12px;
+		line-height: 25px;
+	}
+
+	/*card卡片--照片标题文字--青岛栈桥*/
+	.card__title1{
+		margin: 0;
+		padding: 0 0 10px 0;
+		color: #000;
+		font-size: 22px;
+		font-weight: bold;
+	}
+
+	/*card卡片--红色字--国家AAAA...*/
+	.card__title2 {
+		margin: 0;
+		padding: 0 0 10px 0;
+		font-size: 19px;
+		color: coral;
+	}
+
+	/*card卡片--照片介绍文字*/
+	.card__description {
+		position: absolute;
+		left: 20px;
+		right: 20px;
+		bottom: 98px;
+		margin: 0;
+		padding: 0;
+		color: #666C74;
+		font-size: 16px;
+		line-height: 27px;
+		opacity: 0;
+		transform: translateY(45px);
+		transition: opacity 0.3s, transform 0.3s;
+	}
+
+	.card:hover .card__description {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0.2s;
+	}
+
+	/*card卡片--评论部分*/
+	.card__comment{
+		position: absolute;
+		bottom: 12px;
+		left: 20px;
+		right: 20px;
+		font-size: 11px;
+		color: #A3A9A2;
+	}
+
+	/*card卡片--评论部分--时间*/
+	.word1{
+		display: inline-block;
+		text-align: center;
+		font-size: 12px;
+	}
+
+	/*card卡片--评论部分--评论条数*/
+	.word2{
+		display: inline-block;
+		padding-left: 15px;
+		text-align: center;
+		font-size: 12px;
+	}	
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="card">
+		<div class="card__picture">
+			<img src="./zhanqiao.jpg"/>
+		</div>
+		<div class="card__date">
+			<span class="card__date__day">15</span>
+			<br/>
+			<span class="card__date__month">五月</span>
+		</div>
+		<div class="card__article">
+			<div class="card__kind">照片</div>
+			<h2 class="card__title1">青岛栈桥</h2>
+			<div class="card__title2">国家AAAA级旅游景区</div>
+			<p class="card__description">青岛栈桥是青岛海滨风景区的景点之一，是国务院于1982年首批公布的国家级风景名胜区。青岛栈桥位于游人如织的青岛中山路南端，桥身从海岸探入如弯月般的青岛湾深处。桥身供游人参观并在此停靠旅游船，由此乘船可看海上青岛。
+			</p>
+		</div>
+		<div class="card__comment">
+			<span class="word1">10分钟前</span>
+			<span class="word2">123 评论</span>
+		</div>
+	</div>
+</div>
+</body>
+</html>
