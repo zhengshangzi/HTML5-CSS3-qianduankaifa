@@ -83,7 +83,7 @@ body{
     background: #d3d3d8;
     padding:0;
     height:2.5vw;
-    width:21vw;
+    width:23vw;
 }
 #but1{
     background-color: red;
@@ -183,7 +183,7 @@ body{
 #c21{
     display: none;
 }
-#zz1{position: absolute;opacity: 0.5;background-color: black;color: white;width: 96.2%;top:41%;display: block;}
+#zz1{position: absolute;opacity: 0.5;background-color: black;color: white;width: 96.2%;top:41.7%;display: block;}
 #zz2{display: none;}
 #zz3{display: none;}
 @media only screen and (max-width: 750px) {
