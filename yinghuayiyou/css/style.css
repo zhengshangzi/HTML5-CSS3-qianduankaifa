@@ -182,7 +182,6 @@ body{
 }
 #c21{
     display: none;
-    padding-bottom: 0.5vw
 }
 #zz1{position: absolute;opacity: 0.5;background-color: black;color: white;width: 96.2%;top:41%;display: block;}
 #zz2{display: none;}
@@ -204,7 +203,7 @@ body{
         border:1px solid white;
         border-radius: 2vw;
         color:white;
-        font-size: 3vw;
+        font-sie: 3vw;
         margin-right:4vw;
         background:red;
         padding-left: 3vw;
@@ -239,7 +238,7 @@ body{
     #ca2{
 
         height:8vw;
-        width:50vw;
+        width:48vw;
         margin-left:8vw ;
     }
     #but1{
