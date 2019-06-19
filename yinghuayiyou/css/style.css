@@ -401,11 +401,3 @@ body{
         margin-left: 4vw;
     }
 }
-@media only screen and (max-height: 800px) {
-    #h1{
-        top:22%;
-    }
-    #h2{
-        top:57%;
-    }
-}
