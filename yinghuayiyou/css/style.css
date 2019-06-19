@@ -68,7 +68,7 @@ body{
     padding-bottom: 0;
     padding-top: 0;
     display: none;
-    margin-top: 2vw;
+    margin-top: 1.5vw;
     float: right;
 }
 #az3{
@@ -83,7 +83,7 @@ body{
     background: #d3d3d8;
     padding:0;
     height:2.5vw;
-    width:22vw;
+    width:21vw;
 }
 #but1{
     background-color: red;
@@ -182,8 +182,9 @@ body{
 }
 #c21{
     display: none;
+    padding-bottom: 0.5vw
 }
-#zz1{position: absolute;opacity: 0.5;background-color: black;color: white;width: 96.5%;top:50%;display: block;}
+#zz1{position: absolute;opacity: 0.5;background-color: black;color: white;width: 96.2%;top:41%;display: block;}
 #zz2{display: none;}
 #zz3{display: none;}
 @media only screen and (max-width: 750px) {
@@ -212,7 +213,7 @@ body{
         padding-top: 0;
         display: block;
         float: right;
-        line-height: 6vw;
+        line-height: 5vw;
     }
     #b0{
         width:100%;
@@ -236,9 +237,10 @@ body{
         top:50%
     }
     #ca2{
+
         height:8vw;
-        width:48vw;
-        padding-left: 0;
+        width:50vw;
+        margin-left:8vw ;
     }
     #but1{
         background-color: red;
@@ -275,7 +277,7 @@ body{
         border:1px solid black;
         border-radius: 2vw;
         color:black;
-        font-size: 2vw;
+        font-size: 1vw;
         text-align: center;
         margin: 3vw auto;
         background:white;
@@ -394,4 +396,7 @@ body{
     #zz1{display: none;}
     #zz2{position: absolute;opacity: 0.5;background-color: black;color: white;width: 100%;top:93%;display: block;}
     #zz3{position: absolute;opacity: 0.5;background-color: black;color: white;width: 98%;top:93%;display: block;}
+    #nav11{
+        margin-left: 4vw;
+    }
 }
